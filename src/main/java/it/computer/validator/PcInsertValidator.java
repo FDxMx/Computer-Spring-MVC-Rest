@@ -11,15 +11,17 @@ public class PcInsertValidator{
 
 	public void validate(PcDTO pcDTO) throws ValidazioneException{
 		
-		if(pcDTO.getMarca() == null || pcDTO.getMarca().equals("") || StringUtils.isNumeric(pcDTO.getMarca())) {
-			throw new ValidazioneException();
-		}
-		if(pcDTO.getDescrizione() == null || pcDTO.getDescrizione().equals("")) {
-			throw new ValidazioneException();
-		}
-		if(pcDTO.getComponentiDTO() == null || pcDTO.getComponentiDTO().size() == 0) {
-			throw new ValidazioneException();
-		}
+		String messaggio = "";
+		
+//		if(pcDTO.getMarca() == null || pcDTO.getMarca().equals("") || StringUtils.isNumeric(pcDTO.getMarca())) {
+//			throw new ValidazioneException(messaggio += "Errore validazione marca, ");
+//		}
+//		if(pcDTO.getDescrizione() == null || pcDTO.getDescrizione().equals("")) {
+//			throw new ValidazioneException(messaggio += "Errore validazione descrizione, ");
+//		}
+//		if(pcDTO.getComponentiDTO() == null || pcDTO.getComponentiDTO().size() == 0) {
+//			throw new ValidazioneException(messaggio += "Errore validazione componenti");
+//		}
 	}
 
 }

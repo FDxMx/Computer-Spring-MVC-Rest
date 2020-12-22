@@ -5,12 +5,16 @@ import org.springframework.stereotype.Component;
 
 import it.computer.dto.ComponenteDTO;
 import it.computer.model.Componente;
+import it.computer.service.PcService;
 
 @Component
 public class ComponenteMapper extends AbstractMapper<Componente, ComponenteDTO>{
 	
 	@Autowired
 	private PcMapper pcMapper;
+	
+	@Autowired
+	private PcService pcService;
 
 	@Override
 	public ComponenteDTO convertEntityToDto(Componente entity) {
@@ -22,7 +26,9 @@ public class ComponenteMapper extends AbstractMapper<Componente, ComponenteDTO>{
 		componenteDTO.setCodice(entity.getCodice());
 		componenteDTO.setMarca(entity.getMarca());
 		componenteDTO.setDescrizione(entity.getDescrizione());
+		if(entity.getPc() != null) {
 		componenteDTO.setPcDTO(pcMapper.convertEntityToDto(entity.getPc()));
+		}
 		return componenteDTO;
 	}
 
@@ -39,7 +45,7 @@ public class ComponenteMapper extends AbstractMapper<Componente, ComponenteDTO>{
 		componente.setCodice(dto.getCodice());
 		componente.setDescrizione(dto.getDescrizione());
 		if(dto.getPcDTO() != null) {
-			componente.setPc(pcMapper.convertDtoToEntity(dto.getPcDTO()));
+			componente.setPc(pcMapper.convertDtoToEntity(pcService.findById(Integer.parseInt(dto.getPcDTO().getId()))));
 		}
 		return componente;
 	}

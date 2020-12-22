@@ -11,15 +11,15 @@ public class ComponenteInsertValidator {
 	
 public void validate(ComponenteDTO componenteDTO) throws ValidazioneException{
 		
-		if(componenteDTO.getMarca() == null || componenteDTO.getMarca().equals("") || StringUtils.isNumeric(componenteDTO.getMarca())) {
-			throw new ValidazioneException();
-		}
-		if(componenteDTO.getDescrizione() == null || componenteDTO.getDescrizione().equals("")) {
-			throw new ValidazioneException();
-		}
-		if(componenteDTO.getCodice() == null || componenteDTO.getCodice().equals("")) {
-			throw new ValidazioneException();
-		}
+//		if(componenteDTO.getMarca() == null || componenteDTO.getMarca().equals("") || StringUtils.isNumeric(componenteDTO.getMarca())) {
+//			throw new ValidazioneException("Errore validazione marca");
+//		}
+//		if(componenteDTO.getDescrizione() == null || componenteDTO.getDescrizione().equals("")) {
+//			throw new ValidazioneException("Errore validazione descrizione");
+//		}
+//		if(componenteDTO.getCodice() == null || componenteDTO.getCodice().equals("")) {
+//			throw new ValidazioneException("Errore validazione codice");
+//		}
 	}
 
 }
