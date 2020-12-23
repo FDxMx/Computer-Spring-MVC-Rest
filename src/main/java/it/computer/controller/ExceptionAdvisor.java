@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import it.computer.exception.ValidazioneException;
+import it.computer.exception.ValidazioneIdException;
 
 @ControllerAdvice(basePackages = "it.computer.controller")
 public class ExceptionAdvisor {
@@ -21,6 +22,17 @@ public class ExceptionAdvisor {
 			errori.add(errore.getDefaultMessage());
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errori);
+    }
+	
+	@ExceptionHandler(ValidazioneIdException.class)
+    public ResponseEntity<String> handleException(ValidazioneIdException e){
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID deve essere un numero");
+	}
+ 
+	
+	@ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception e){
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Eccezione!!");
     }
 
 }

@@ -20,6 +20,7 @@ import it.computer.dto.ComponenteDTO;
 import it.computer.dto.messages.ComponenteInsertDTO;
 import it.computer.dto.messages.ComponenteUpdateDTO;
 import it.computer.exception.ValidazioneException;
+import it.computer.exception.ValidazioneIdException;
 import it.computer.service.ComponenteService;
 
 @RestController
@@ -35,8 +36,12 @@ public class ComponenteController {
 	}
 	
 	@GetMapping("get/{id}")
-	public ResponseEntity<ComponenteDTO> get(@PathVariable("id") Integer id){
-		return ResponseEntity.ok(componenteService.findById(id));
+	public ResponseEntity<ComponenteDTO> get(@PathVariable("id") String id) throws ValidazioneIdException{
+		try {
+			return ResponseEntity.ok(componenteService.findById(Integer.parseInt(id)));
+		} catch (Exception e) {
+			throw new ValidazioneIdException();
+		}
 	}
 	
 	@PostMapping("insert")
@@ -60,9 +65,12 @@ public class ComponenteController {
 	}
 	
 	@DeleteMapping("delete/{id}")
-	public ResponseEntity<String> delete (@PathVariable("id") Integer id){
-		componenteService.delete(id);
-		return ResponseEntity.ok("Eliminazione effettuata");
+	public ResponseEntity<String> delete (@PathVariable("id") String id) throws ValidazioneIdException{
+		try {
+			componenteService.delete(Integer.parseInt(id));
+			return ResponseEntity.ok("Eliminazione effettuata");
+		} catch (Exception e) {
+			throw new ValidazioneIdException();
+		}
 	}
-	
 }

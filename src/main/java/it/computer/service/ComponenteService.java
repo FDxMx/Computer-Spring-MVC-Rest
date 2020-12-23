@@ -9,6 +9,7 @@ import it.computer.dto.ComponenteDTO;
 import it.computer.dto.messages.ComponenteInsertDTO;
 import it.computer.dto.messages.ComponenteUpdateDTO;
 import it.computer.mapper.ComponenteMapper;
+import it.computer.mapper.ComponenteMapperWithout;
 import it.computer.repository.ComponenteRepository;
 
 @Service
@@ -20,6 +21,9 @@ public class ComponenteService {
 	@Autowired
 	private ComponenteMapper componenteMapper;
 	
+	@Autowired
+	private ComponenteMapperWithout componenteMapperWithout;
+	
 	public void insert (ComponenteInsertDTO componenteInsertDTO) {
 		ComponenteDTO componenteDTO = new ComponenteDTO();
 		componenteDTO.setCodice(componenteInsertDTO.getCodice());
@@ -30,7 +34,7 @@ public class ComponenteService {
 	}
 	
 	public ComponenteDTO findById(Integer id) {
-		return componenteMapper.convertEntityToDto(componenteRepository.findById(id).get());
+		return componenteMapperWithout.convertEntityToDto(componenteRepository.findById(id).get());
 	}
 	
 	public void update(ComponenteUpdateDTO componenteUpadteDTO) {
@@ -48,7 +52,7 @@ public class ComponenteService {
 	}
 	
 	public List<ComponenteDTO> list(){
-		return componenteMapper.convertEntityToDto(componenteRepository.findAll());
+		return componenteMapperWithout.convertEntityToDto(componenteRepository.findAll());
 	}
 
 }

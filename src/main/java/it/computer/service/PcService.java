@@ -9,6 +9,7 @@ import it.computer.dto.PcDTO;
 import it.computer.dto.messages.PcInsertDTO;
 import it.computer.dto.messages.PcUpdateDTO;
 import it.computer.mapper.PcMapper;
+import it.computer.mapper.PcMapperWithout;
 import it.computer.model.Componente;
 import it.computer.model.Pc;
 import it.computer.repository.ComponenteRepository;
@@ -22,6 +23,9 @@ public class PcService {
 	
 	@Autowired
 	private PcMapper pcMapper;
+	
+	@Autowired
+	private PcMapperWithout pcMapperWithout;
 	
 	@Autowired
 	private ComponenteRepository componenteRepository;
@@ -52,11 +56,11 @@ public class PcService {
 	}
 	
 	public List<PcDTO> list(){
-		return pcMapper.convertEntityToDto(pcRepository.findAll());
+		return pcMapperWithout.convertEntityToDto(pcRepository.findAll());
 	}
 	
 	public PcDTO findById(Integer id) {
-		return pcMapper.convertEntityToDto(pcRepository.findById(id).get());
+		return pcMapperWithout.convertEntityToDto(pcRepository.findById(id).get());
 	}
 
 }

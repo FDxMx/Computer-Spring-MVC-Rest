@@ -20,6 +20,7 @@ import it.computer.dto.PcDTO;
 import it.computer.dto.messages.PcInsertDTO;
 import it.computer.dto.messages.PcUpdateDTO;
 import it.computer.exception.ValidazioneException;
+import it.computer.exception.ValidazioneIdException;
 import it.computer.service.PcService;
 
 @RestController
@@ -35,8 +36,13 @@ public class PcController {
 	}
 	
 	@GetMapping("get/{id}")
-	public ResponseEntity<PcDTO> get(@PathVariable("id") Integer id){
-		return ResponseEntity.ok(pcService.findById(id));
+	public ResponseEntity<PcDTO> get(@PathVariable("id") String id) throws ValidazioneIdException{
+		try {
+			return ResponseEntity.ok(pcService.findById(Integer.parseInt(id)));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ValidazioneIdException();
+		}
 	}
 	
 	@PostMapping("insert")
@@ -60,9 +66,13 @@ public class PcController {
 	}
 	
 	@DeleteMapping("delete/{id}")
-	public ResponseEntity<String> delete (@PathVariable("id") Integer id){
-		pcService.delete(id);
-		return ResponseEntity.ok("Eliminazione effettuata");
+	public ResponseEntity<String> delete (@PathVariable("id") String id) throws ValidazioneIdException{
+		try {
+			pcService.delete(Integer.parseInt(id));
+			return ResponseEntity.ok("Eliminazione effettuata");
+		} catch (Exception e) {
+			throw new ValidazioneIdException();
+		}
 	}
-
+	
 }

@@ -3,11 +3,13 @@ package it.computer.dto.messages;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 import it.computer.dto.ComponenteDTO;
 
 public class PcUpdateDTO {
 	
+	@Positive(message = "ID deve essere un numero positivo")
 	@NotBlank(message = "ID obbligatorio")
 	private String id;
 	@NotBlank(message = "MARCA obbligatoria")

@@ -2,8 +2,11 @@ package it.computer.dto;
 
 import java.util.List;
 
+import javax.validation.constraints.Positive;
+
 public class PcDTO {
 	
+	@Positive
 	private String id;
 	private String marca;
 	private String descrizione;

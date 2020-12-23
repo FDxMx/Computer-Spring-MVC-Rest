@@ -6,7 +6,7 @@ public class ComponenteDTO {
 	private String marca;
 	private String descrizione;
 	private String codice;
-	private PcDTO PcDTO;
+	private PcDTO pcDTO;
 	
 	public String getId() {
 		return id;
@@ -27,10 +27,10 @@ public class ComponenteDTO {
 		this.codice = codice;
 	}
 	public PcDTO getPcDTO() {
-		return PcDTO;
+		return pcDTO;
 	}
 	public void setPcDTO(PcDTO pcDTO) {
-		PcDTO = pcDTO;
+		this.pcDTO = pcDTO;
 	}
 	public String getDescrizione() {
 		return descrizione;
